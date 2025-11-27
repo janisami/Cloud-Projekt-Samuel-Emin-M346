@@ -31,7 +31,7 @@ Die Trennung erhöht Sicherheit, Skalierbarkeit und entspricht professionellen C
 
 ### 2.2 Architekturdiagramm
 
-![Architekturdiagramm](architektur.png)
+![Architekturdiagramm](Grafiken/architektur.png)
 
 
 

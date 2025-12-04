@@ -1,6 +1,6 @@
 # Projektplan für M346 Nextcloud Projekt
 
-**Zeitraum:** 20.11 – 18.12  
+**Zeitraum:** 20.11 – 17.12  
 **Arbeitszeit pro Woche:** 1.5 Stunden  
 **Ziel:** Strukturierter Plan zur vollständigen und stressfreien Fertigstellung des Projekts
 

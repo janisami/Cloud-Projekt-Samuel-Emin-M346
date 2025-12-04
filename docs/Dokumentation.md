@@ -1,31 +1,25 @@
-# Nextcloud Projekt – Dokumentation (Modul 346)
+# Nextcloud Projekt – Dokumentation (Modul 346) Samuel und Emin
 
 ## 1. Einleitung
-In diesem Projekt setzen wir eine Nextcloud-Installation in einer Cloud-Umgebung um.  
-Dabei verwenden wir ein **2-Server-Modell**, bestehend aus einem Webserver und einem separaten Datenbankserver.  
-Das Ziel ist, eine funktionierende Nextcloud bereitzustellen, die über ein Installationsskript bzw. Cloud-Init automatisch eingerichtet werden kann.
+In diesem Projekt wird eine Nextcloud-Installation mithilfe von **automatisierten Skripten** bereitgestellt.  
+Das Ziel besteht darin, den Webserver, die PHP-Umgebung, die Nextcloud-Dateien sowie die Datenbank vollständig per Script einzurichten, ohne dass manuelle Installationsschritte notwendig sind.
 
-Dieses Dokument beschreibt die Architektur, die Umsetzung, Tests, Ergebnisse und die Reflexion des Projektes.
+Die Dokumentation beschreibt **den Aufbau, die Funktion, den Zweck und den Ablauf der Skripte**, sowie Screenshots der Ergebnisse, die durch die Automatisierung erzeugt wurden.
 
 ---
 
-## 2. Architektur
+## 2. Architektur (2-Server-Modell)
 
 ### 2.1 Überblick
-Die Projektarchitektur besteht aus zwei voneinander getrennten Systemen:
+Die automatisierte Installation setzt auf zwei Server:
 
 - **Webserver (Nextcloud)**  
-  - Apache Webserver  
-  - PHP + benötigte Module  
-  - Nextcloud Community Edition  
-  - öffentliche IP für Benutzerzugriff  
+  - Wird automatisch durch ein Bash- oder Cloud-Init-Skript eingerichtet.
+  - Installiert Apache, PHP und Nextcloud.
 
-- **Datenbankserver**  
-  - MariaDB  
-  - interne IP (nur für Webserver zugänglich)  
-  - separate DB, Benutzer und Passwort für Nextcloud  
-
-Die Trennung erhöht Sicherheit, Skalierbarkeit und entspricht professionellen Cloud-Standards.
+- **Datenbankserver (MariaDB)**  
+  - Kann manuell erstellt sein oder ebenfalls durch ein eigenes Skript.
+  - Das Skript legt automatisch die Datenbank, Benutzer und Berechtigungen an.
 
 ---
 

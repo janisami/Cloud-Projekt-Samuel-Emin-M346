@@ -90,7 +90,7 @@ Bei der Eingabe gaben wir folgende Werte ein:
 - **Default output format:** `json`
 
 
-> ![AWS CLI Konfiguration](Grafiken/screenshot-aws-config.png)  
+> ![AWS CLI Konfiguration](screenshots/screenshot-aws-config.png)  
 
 
 Zur Überprüfung führten wir aus:

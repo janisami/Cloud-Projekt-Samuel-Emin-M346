@@ -111,7 +111,7 @@ m346-nextcloud/
 ├── README.md                          # Nur Inbetriebnahme
 ├── docs/
 │   ├── Dokumentation.md               # Diese Datei (in Markdown für Git)
-│   └── Grafiken/
+│   └── Grafiken-Screenshots
 │       ├── architektur.png
 │       ├── screenshot-aws-config.png
 │       ├── screenshot-nextcloud-installer.png
@@ -233,10 +233,8 @@ chmod 400 "${KEY_NAME}.pem"
 - Mit `chmod 400` wird die Datei vor unbefugtem Zugriff geschützt (SSH akzeptiert nur private Keys mit dieser Berechtigung)
 
 Am Ende des Skripts wird die Nutzung des Keypairs für SSH erklärt.
-
-> **Screenshot-Platzhalter:**  
+ 
 > ![Keypair Datei im Dateimanager](Grafiken/screenshot-keypair.png)  
-> *Hier Screenshot vom Terminal mit erstelltem `.pem`-Dateiname einfügen.*
 
 ### 4.6 Security Groups
 

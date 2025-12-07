@@ -59,47 +59,117 @@ Bevor das Deployment-Skript gestartet werden konnte, mussten folgende Tools auf 
 - **Git:** Zur Versionsverwaltung und für das Repository
 - **AWS CLI v2:** Zur Kommunikation mit AWS und zum Erstellen der EC2-Ressourcen
 - **Bash:** Zur Ausführung des Deployment-Skripts
-- **Ein AWS-Account:** 
+- **Ein AWS-Account:**
 
-### 3.2 AWS CLI Installation und Konfiguration
+# 3.2 AWS CLI Installation und Konfiguration
 
-Die AWS CLI wurde wie folgt auf unserem Rechner eingerichtet:
+Die AWS CLI wurde wie folgt auf unserem Windows-Rechner eingerichtet:
 
-#### Installation (macOS/Linux)
+---
+
+## Installation (Windows)
+
+### Schritt 1: Installer herunterladen
+
+1. Öffne deinen Browser und gehe auf:  
+   **https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html**
+
+2. Klicke auf den Link für **Windows** und lade den **AWSCLIV2 .msi Installer** herunter.
+
+3. Speichere die Datei auf deinem Desktop oder Downloads-Ordner.
+
+### Schritt 2: Installer ausführen
+
+1. Doppelklick auf die heruntergeladene `.msi`-Datei
+2. Der Setup-Assistent öffnet sich
+3. Klicke **Next** → **I accept the terms in the License Agreement** → **Next** → **Install**
+4. Warte bis die Installation fertig ist
+5. Klicke **Finish**
+
+### Schritt 3: Überprüfung
+
+Öffne **Git Bash** oder **Windows PowerShell** (nicht cmd!) und tippe:
 
 ```bash
-# Download und Installation
-curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-unzip awscliv2.zip
-sudo ./aws/install
+aws --version
 ```
 
-#### Konfiguration
+**Erwartete Ausgabe:**
+```
+aws-cli/2.x.x Platform/Windows-x.x.x Python/3.x.x
+```
 
-Nach der Installation führten wir `aws configure` aus:
+Falls diese Ausgabe kommt, ist die Installation erfolgreich!
+
+---
+
+## Konfiguration
+
+### Schritt 1: AWS CLI konfigurieren
+
+Öffne **Git Bash** und tippe:
 
 ```bash
 aws configure
 ```
 
-Bei der Eingabe gaben wir folgende Werte ein:
+Der Setup-Assistent fragt nacheinander nach vier Werten:
 
-- **AWS Access Key ID:** `[Unser IAM-User Access Key]`
-- **AWS Secret Access Key:** `[Unser IAM-User Secret Key]`
-- **Default region:** `us-east-1`
-- **Default output format:** `json`
+### Schritt 2: Werte eingeben
 
-> **Screenshot-Platzhalter:**  
-> ![AWS CLI Konfiguration](Grafiken/screenshot-aws-config.png)  
-> *Hier Screenshot vom Terminal mit `aws configure` oder Bestätigung durch `aws sts get-caller-identity` einfügen.*
+```
+AWS Access Key ID [None]: AKIA.....................
+AWS Secret Access Key [None]: wJ........................
+Default region name [None]: eu-central-1
+Default output format [None]: json
+```
 
-Zur Überprüfung führten wir aus:
+**Erklärung:**
+
+| Feld | Wert | Herkunft |
+|------|------|----------|
+| **AWS Access Key ID** | `AKIA...` | Aus AWS IAM Console unter "Security credentials" |
+| **AWS Secret Access Key** | `wJ...` | Aus AWS IAM Console (wird nur einmal angezeigt!) |
+| **Default region name** | `eu-central-1` | Abhängig von deinem Standort (z.B. `us-east-1`, `eu-west-1`) |
+| **Default output format** | `json` | Empfohlen für Scripts (oder `table`, `text`, `yaml`) |
+
+### Schritt 3: Überprüfung der Konfiguration
+
+Nach `aws configure` tippe:
 
 ```bash
 aws sts get-caller-identity
 ```
 
+**Erwartete Ausgabe:**
+```json
+{
+    "UserId": "AIDAI.....................",
+    "Account": "123456789012",
+    "Arn": "arn:aws:iam::123456789012:user/dein-username"
+}
+```
+> ![AWS CLI Konfiguration](Grafiken/screenshot-aws-config.png)  
+> *Hier Screenshot vom Terminal mit `aws configure` oder Bestätigung durch `aws sts get-caller-identity` einfügen.*
+
 Diese Ausgabe zeigte, dass die Konfiguration erfolgreich war.
+
+---
+
+## Wo werden die Zugangsdaten gespeichert?
+
+Die Konfiguration wird in zwei Dateien gespeichert:
+
+**Auf Windows:**
+
+- **Credentials:** `C:\Users\YourUsername\.aws\credentials`
+- **Config:** `C:\Users\YourUsername\.aws\config`
+
+**Diese Dateien solltest du:**
+- Sicher aufbewahren (nicht ins Git-Repository committen!)
+- Niemandem zeigen
+- **Niemals in öffentliche Repositories hochladen**
+
 
 ### 3.3 Repository-Struktur
 

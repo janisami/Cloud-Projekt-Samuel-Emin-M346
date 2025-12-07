@@ -3,7 +3,7 @@
 ## Projektdokumentation
 **Gruppe:** Samuel und Emin  
 **Modul:** 346 – Cloudlösungen konzipieren und realisieren  
-**Schule:** GBW St.Gallen  
+**Schule:** GBS St.Gallen  
 **Zeitraum:** November – Dezember 2025
 
 ---

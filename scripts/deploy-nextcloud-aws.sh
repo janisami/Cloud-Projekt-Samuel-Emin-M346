@@ -1,10 +1,17 @@
 #!/bin/bash
-# deploy-nextcloud-aws.sh
-# Vollautomatisches Nextcloud-Deployment auf AWS (us-east-1)
-# - Sucht Subnet dynamisch
-# - Erzeugt eigenes Keypair automatisch
-# - Nutzt latest Nextcloud-Archiv
-# - Zwei EC2-Instanzen: Web (Nextcloud) + DB (MariaDB)
+###############################################################################
+#  _   _           _            _                 _           _ 
+# | \ | | ___  ___| | ___   ___| |__   ___   ___ | | ___  ___| |
+# |  \| |/ _ \/ __| |/ _ \ / __| '_ \ / _ \ / _ \| |/ _ \/ __| |
+# | |\  |  __/ (__| | (_) | (__| | | | (_) | (_) | |  __/\__ \_|
+# |_| \_|\___|\___|_|\___/ \___|_| |_|\___/ \___/|_|\___||___(_)
+#
+#  Vollautomatisches Nextcloud-Deployment auf AWS (us-east-1)
+#  - Sucht Subnet dynamisch
+#  - Erzeugt eigenes Keypair automatisch
+#  - Nutzt latest Nextcloud-Archiv
+#  - Zwei EC2-Instanzen: Web (Nextcloud) + DB (MariaDB)
+###############################################################################
 
 set -e
 
@@ -23,14 +30,16 @@ NC_DB_NAME="nextcloud"
 NC_DB_USER="ncuser"
 NC_DB_PASS="NcDbPass123!"
 DB_ROOT_PASS="RootPass123!"
-NC_URL="https://download.nextcloud.com/server/releases/latest.tar.bz2"   # immer aktuelle Version[web:17][web:61]
+NC_URL="https://download.nextcloud.com/server/releases/latest.tar.bz2"   # immer aktuelle Version [web:1][web:2][web:17]
 
 ########################
 # Ubuntu 22.04 AMI holen
 ########################
 AMI_FILTER="ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-amd64-server-*"
 
-echo "[*] Ermittle Ubuntu 22.04 AMI in ${AWS_REGION} ..."
+echo "┌──────────────────────────────────────────────┐"
+echo "│ [*] Ermittle Ubuntu 22.04 AMI in ${AWS_REGION} ... │"
+echo "└──────────────────────────────────────────────┘"
 AMI_ID=$(aws ec2 describe-images \
   --owners "099720109477" \
   --filters "Name=name,Values=${AMI_FILTER}" "Name=architecture,Values=x86_64" \
@@ -42,7 +51,10 @@ echo "[*] Verwende AMI: ${AMI_ID}"
 ########################
 # Default-Subnet dynamisch holen
 ########################
-echo "[*] Ermittle Default-Subnet in ${AWS_REGION} ..."
+echo
+echo "┌──────────────────────────────────────────────┐"
+echo "│ [*] Ermittle Default-Subnet in ${AWS_REGION} ... │"
+echo "└──────────────────────────────────────────────┘"
 SUBNET_ID=$(aws ec2 describe-subnets \
   --filters "Name=default-for-az,Values=true" \
   --query 'Subnets[0].SubnetId' \
@@ -62,7 +74,10 @@ VPC_ID=$(aws ec2 describe-subnets --subnet-ids "${SUBNET_ID}" --query 'Subnets[0
 ########################
 KEY_NAME="${PROJECT_NAME}-key-$(date +%s)"
 
-echo "[*] Erzeuge Keypair: ${KEY_NAME} ..."
+echo
+echo "┌─────────────────────────────┐"
+echo "│ [*] Erzeuge Keypair: ${KEY_NAME} │"
+echo "└─────────────────────────────┘"
 aws ec2 create-key-pair \
   --key-name "${KEY_NAME}" \
   --query "KeyMaterial" \
@@ -73,7 +88,10 @@ chmod 400 "${KEY_NAME}.pem"
 ########################
 # Security Groups
 ########################
-echo "[*] Erstelle Security Group für Webserver ..."
+echo
+echo "┌──────────────────────────────────────────────┐"
+echo "│ [*] Erstelle Security Group für Webserver ... │"
+echo "└──────────────────────────────────────────────┘"
 WEB_SG_ID=$(aws ec2 create-security-group \
   --group-name "${PROJECT_NAME}-web-sg" \
   --description "Web SG for Nextcloud" \
@@ -81,7 +99,10 @@ WEB_SG_ID=$(aws ec2 create-security-group \
   --query 'GroupId' \
   --output text)
 
-echo "[*] Erstelle Security Group für DB ..."
+echo
+echo "┌────────────────────────────────────────────┐"
+echo "│ [*] Erstelle Security Group für DB ...    │"
+echo "└────────────────────────────────────────────┘"
 DB_SG_ID=$(aws ec2 create-security-group \
   --group-name "${PROJECT_NAME}-db-sg" \
   --description "DB SG for Nextcloud" \
@@ -89,7 +110,10 @@ DB_SG_ID=$(aws ec2 create-security-group \
   --query 'GroupId' \
   --output text)
 
-echo "[*] Konfiguriere Web-SG (HTTP + SSH) ..."
+echo
+echo "┌────────────────────────────────────┐"
+echo "│ [*] Konfiguriere Web-SG (HTTP+SSH) │"
+echo "└────────────────────────────────────┘"
 aws ec2 authorize-security-group-ingress \
   --group-id "${WEB_SG_ID}" \
   --ip-permissions '[
@@ -97,7 +121,10 @@ aws ec2 authorize-security-group-ingress \
     {"IpProtocol":"tcp","FromPort":22,"ToPort":22,"IpRanges":[{"CidrIp":"0.0.0.0/0"}]}
   ]'
 
-echo "[*] Konfiguriere DB-SG (3306 nur vom Web-SG, SSH offen) ..."
+echo
+echo "┌───────────────────────────────────────────────────────────────┐"
+echo "│ [*] Konfiguriere DB-SG (3306 nur vom Web-SG, SSH weltweit)   │"
+echo "└───────────────────────────────────────────────────────────────┘"
 aws ec2 authorize-security-group-ingress \
   --group-id "${DB_SG_ID}" \
   --ip-permissions "[
@@ -158,7 +185,10 @@ EOF
 ########################
 # DB-Instance starten
 ########################
-echo "[*] Starte DB-Instance ..."
+echo
+echo "┌────────────────────────────┐"
+echo "│ [*] Starte DB-Instance ... │"
+echo "└────────────────────────────┘"
 DB_INSTANCE_ID=$(aws ec2 run-instances \
   --image-id "${AMI_ID}" \
   --instance-type "${INSTANCE_TYPE}" \
@@ -261,7 +291,10 @@ EOF
 ########################
 # Web-Instance starten
 ########################
-echo "[*] Starte Web-Instance ..."
+echo
+echo "┌─────────────────────────────┐"
+echo "│ [*] Starte Web-Instance ... │"
+echo "└─────────────────────────────┘"
 WEB_INSTANCE_ID=$(aws ec2 run-instances \
   --image-id "${AMI_ID}" \
   --instance-type "${INSTANCE_TYPE}" \
@@ -283,7 +316,14 @@ WEB_PUBLIC_IP=$(aws ec2 describe-instances \
 ########################
 # Ausgabe
 ########################
+echo
 echo "======================================================="
+echo "   ____            _           _                 _     "
+echo "  |  _ \ _ __ ___ | |__   ___ | | ___   __ _  __| |    "
+echo "  | |_) | '__/ _ \| '_ \ / _ \| |/ _ \ / _\` |/ _\` |    "
+echo "  |  __/| | | (_) | | | | (_) | | (_) | (_| | (_| |    "
+echo "  |_|   |_|  \___/|_| |_|\___/|_|\___/ \__,_|\__,_|    "
+echo
 echo " Deployment abgeschlossen (Region ${AWS_REGION})."
 echo ""
 echo " Webserver:"

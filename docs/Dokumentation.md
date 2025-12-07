@@ -346,7 +346,7 @@ echo "===================================" >> /root/db-info.txt
 Am Ende werden die Datenbankzugangsdaten in `/root/db-info.txt` geschrieben. Diese können später für Debugging genutzt werden.
 
 > **Screenshot von ausgabe auf DB Server**  
-> ![DB-Server mit db-info.txt](Grafiken/screenshot-db-server.png)  
+> ![DB-Server mit db-info.txt](Grafiken-Screenshots/screenshot-db-server.png)  
 > *Hier Screenshot vom SSH-Zugriff auf die DB-Instanz und Inhalt der `db-info.txt` Datei einfügen.*
 
 ### 4.8 Start der DB-Instanz

@@ -59,7 +59,7 @@ Bevor das Deployment-Skript gestartet werden konnte, mussten folgende Tools auf 
 - **Git:** Zur Versionsverwaltung und für das Repository
 - **AWS CLI v2:** Zur Kommunikation mit AWS und zum Erstellen der EC2-Ressourcen
 - **Bash:** Zur Ausführung des Deployment-Skripts
-- **Ein AWS-Account:** Mit gültigen IAM-Zugangsdaten (Access Key und Secret Key)
+- **Ein AWS-Account:** 
 
 ### 3.2 AWS CLI Installation und Konfiguration
 
@@ -681,7 +681,7 @@ Ein wichtiger Punkt war das Testing: Wir haben nicht einfach das Skript geschrie
 
 ### 7.2 Persönliche Reflexion – Samuel
 
-Für mich war dieses Projekt die erste echte Erfahrung mit AWS und Infrastructure as Code. Besonders spannend fand ich, wie ein einziges Bash-Skript es ermöglicht, eine komplette Cloud-Infrastruktur mit Webserver, Datenbank und allen Konfigurationen hochzufahren. Das ist beeindruckend und zeigt, wohin moderne DevOps-Praktiken führen.
+Für mich war dieses Projekt die erste echte Erfahrung mit Infrastructure as Code. Besonders spannend fand ich, wie ein einziges Bash-Skript es ermöglicht, eine komplette Cloud-Infrastruktur mit Webserver, Datenbank und allen Konfigurationen hochzufahren. Das ist beeindruckend und zeigt, wohin moderne DevOps-Praktiken führen.
 
 **Was gut lief:**
 
@@ -752,12 +752,15 @@ Ich bin froh, dass wir beide die Zeit investiert haben, um alles gründlich zu d
 
 7. **Apache HTTP Server – Offizielle Dokumentation**, https://httpd.apache.org/docs/
 
+8. **KI: Perplexity und Chatgpt zur erstellung vom Skript und debugging**, https://perplexity.ai https://chatgpt.com
+
+9. **Deepl - Benutzt für Sprachkorrektur und verbesserung der Texte** https://deepl.com
+
 ---
 
-**Dokumentation abgeschlossen am:** [Platzhalter: Datum einfügen]  
+**Dokumentation abgeschlossen am:** 17.12.2025  
 **Erstellt von:** Samuel und Emin  
-**Repository:** [Platzhalter: Link zum Git-Repository einfügen]
-
+**Repository:** https://github.com/janisami/Cloud-Projekt-Samuel-Emin-M346.git
 ---
 
 **Ende der Dokumentation**

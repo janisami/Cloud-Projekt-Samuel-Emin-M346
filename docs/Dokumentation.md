@@ -30,7 +30,7 @@ Die Lösung basiert auf einer klassischen 2-Tier-Architektur in AWS:
 
 ### 2.2 Architekturdiagramm
 
-![Architekturdiagramm](Grafiken/architektur.png)
+![Architekturdiagramm](Grafiken-Screenshots/architektur.png)
 
 **Beschreibung des Diagramms:**
 
@@ -90,7 +90,7 @@ Bei der Eingabe gaben wir folgende Werte ein:
 - **Default output format:** `json`
 
 
-> ![AWS CLI Konfiguration](Grafiken/screenshot-aws-config.png)  
+> ![AWS CLI Konfiguration](Grafiken-Screenshots/screenshot-aws-config.png)  
 
 
 Zur Überprüfung führten wir aus:
@@ -234,7 +234,7 @@ chmod 400 "${KEY_NAME}.pem"
 
 Am Ende des Skripts wird die Nutzung des Keypairs für SSH erklärt.
  
-> ![Keypair Datei im Dateimanager](Grafiken/screenshot-keypair.png)  
+> ![Keypair Datei im Dateimanager](Grafiken-Screenshots/screenshot-keypair.png)  
 
 ### 4.6 Security Groups
 

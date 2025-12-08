@@ -345,9 +345,8 @@ echo "===================================" >> /root/db-info.txt
 
 Am Ende werden die Datenbankzugangsdaten in `/root/db-info.txt` geschrieben. Diese können später für Debugging genutzt werden.
 
-> **Screenshot von ausgabe auf DB Server**  
+> **Screenshot von Ausgabe auf DB Server**  
 > ![DB-Server mit db-info.txt](Grafiken-Screenshots/screenshot-db-server.png)  
-> *Hier Screenshot vom SSH-Zugriff auf die DB-Instanz und Inhalt der `db-info.txt` Datei einfügen.*
 
 ### 4.8 Start der DB-Instanz
 
@@ -496,9 +495,8 @@ echo "================================================" >> /root/web-info.txt
 
 Die relevanten Daten für den Nextcloud-Installer werden auch in eine Info-Datei geschrieben.
 
-> **Screenshot-Platzhalter:**  
-> ![Webserver web-info.txt](Grafiken/screenshot-web-info.png)  
-> *Hier Screenshot vom SSH-Zugriff auf die Web-Instanz und Inhalt der `web-info.txt` Datei einfügen.*
+> **Screenshot von Ausgabe vom Web-Server**  
+> ![Webserver web-info.txt](Grafiken-Screenshots/screenshot-web-info.png)  
 
 ### 4.10 Start der Web-Instanz und Abschlussausgabe
 
@@ -524,10 +522,8 @@ Trage im Nextcloud-Installer ein:
   DB Name : nextcloud
   User    : ncuser
   Pass    : NcDbPass123!
-  Host    : 10.0.1.42
+  Host    : "Deine Öffentliche IP"
 ```
-
-Diese Ausgabe enthält alles, was die Lehrperson braucht, um Nextcloud zu installieren.
 
 > **Screenshot-Platzhalter:**  
 > ![Komplette Skript-Ausgabe](Grafiken/screenshot-deploy-output.png)  
@@ -568,7 +564,7 @@ Auf der DB-Instanz wurde die Datenbank `nextcloud` angelegt und der Benutzer `nc
 ### 6.1 Testfall 1: Skript läuft ohne Fehler durch
 
 **Testperson:** Samuel  
-**Datum:** [Platzhalter: z.B. 10.12.2025, 14:15 Uhr]  
+**Datum:** 07.12.2025 
 **Ausgangssituation:** AWS CLI ist konfiguriert, Git-Repository ist geclonet, das Skript liegt in `scripts/`.
 
 **Vorgehen:**
@@ -603,7 +599,7 @@ Die Automatisierung funktioniert stabil. Das `set -e` im Skript sorgt dafür, da
 ### 6.2 Testfall 2: Nextcloud-Installer über Public IP erreichbar
 
 **Testperson:** Emin  
-**Datum:** [Platzhalter: z.B. 10.12.2025, 14:30 Uhr]  
+**Datum:** 11.12.2025
 **Ausgangssituation:** Deployment erfolgreich abgeschlossen, Web-Instanz ist in `running`-Status.
 
 **Vorgehen:**

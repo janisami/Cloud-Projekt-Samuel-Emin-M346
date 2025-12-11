@@ -599,7 +599,31 @@ Die Automatisierung funktioniert stabil. Das `set -e` im Skript sorgt dafür, da
 
 ---
 
-
+### 6.2 Testfall 2: Nextcloud-Installer über Public IP erreichbar
+ 
+**Testperson:** Emin  
+**Datum:** 11.12.2025
+**Ausgangssituation:** Deployment erfolgreich abgeschlossen, Web-Instanz ist in `running`-Status.
+ 
+**Vorgehen:**
+ 
+1. Browser öffnen
+2. Die vom Skript ausgegebene URL eingeben: `http://<Public-IP>`
+ 
+**Erwartetes Ergebnis:**
+ 
+- Nextcloud-Installationsassistent wird angezeigt
+- Formular für Admin-Benutzerdaten und Datenbank-Konfiguration ist sichtbar
+ 
+**Tatsächliches Ergebnis:**
+ 
+- Beim ersten Aufruf dauerte es ca. 2-3 Minuten, bis die Seite erschien (UserData-Ausführung)
+- Nach dieser Zeit zeigte sich der Nextcloud-Setup-Wizard ohne Fehler
+ 
+**Fazit:**
+ 
+Der Webserver ist korrekt konfiguriert. Der DocumentRoot zeigt direkt auf das Nextcloud-Verzeichnis, Port 80 ist von aussen erreichbar. Das erfüllt **Anforderung A5 (Gütestufe 3)**: Webserver installiert, Dienste konfiguriert, Startpunkt der Applikation ist über die öffentliche IP direkt erreichbar.
+> ![Testfall 2 – Nextcloud Installationsassistent](Grafiken-Screenshots/screenshot-nextcloud-installer.png)
 ---
 
 ### 6.3 Testfall 3: Datenbankverbindung im Installer funktioniert
@@ -675,7 +699,29 @@ Insgesamt bin ich stolz auf das Ergebnis und freue mich, dass wir ein Projekt ge
 
 ---
 
-
+### 7.3 Persönliche Reflexion – Emin
+ 
+Dieses Projekt hat mir sehr geholfen, die Bedeutung guter Dokumentation zu verstehen. Anfangs dachte ich, Dokumentation sei nur etwas für „später", aber durch die Kriterien des Auftrags wurde mir klar: Eine gute Dokumentation ist ebenso wichtig wie das funktionierende Skript. Sie ermöglicht es einer aussenstehenden Fachperson (wie der Lehrperson), die Lösung zu verstehen und zu bewerten.
+ 
+**Was gut lief:**
+ 
+- Die Arbeitsteilung war klar: Samuel hat das Skript entwickelt, ich habe dokumentiert und getestet
+- Durch das Schreiben der Dokumentation habe ich die technischen Details noch besser verstanden
+- Die Test-Checklisten halfen, systematisch vorzugehen
+ 
+**Herausforderungen:**
+ 
+- Zu Beginn war unklar, wie ausführlich die Dokumentation sein sollte. Es hat Zeit gekostet, einen guten „Schreibton" zu finden – weder zu simpel noch zu akademisch
+- Screenshots zum richtigen Zeitpunkt zu machen war manchmal knifflig (manche Fehler traten nur einmal auf)
+- Git und Markdown sind mächtige Tools, aber auch die Struktur des Repos musste passen
+ 
+**Was ich für die Zukunft gelernt habe:**
+ 
+- Dokumentation sollte parallel zur Entwicklung stattfinden, nicht danach – so wird sie genauer und vollständiger
+- Konkrete Code-Beispiele und Screenshots sind essentiell
+- Gute Struktur (Kapitel, Unterkapitel, klare Überschriften) macht Doku lesbar
+ 
+Ich bin froh, dass wir beide die Zeit investiert haben, um alles gründlich zu dokumentieren. Das macht das Projekt zu etwas, das nicht nur funktioniert, sondern auch verstanden werden kann.
 ---
 
 ## 8. Quellen und Referenzen

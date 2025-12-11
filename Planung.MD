@@ -82,5 +82,4 @@
 - Nachvollziehbare Dokumentation  
 - Saubere Screenshots  
 - Gute Reflexion 
-### 8.1.1 Vergleich: Manuelle Installation vs. Skript-Deployment
  

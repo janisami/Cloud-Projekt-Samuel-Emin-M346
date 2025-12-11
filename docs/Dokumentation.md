@@ -653,12 +653,44 @@ Der Webserver ist korrekt konfiguriert. Der DocumentRoot zeigt direkt auf das Ne
 Die interne Kommunikation zwischen Web- und DB-Instanz funktioniert tadellos. Die Security Groups sind korrekt konfiguriert (Port 3306 nur vom Webserver-SG erreichbar), und die private IP-Adressierung ermöglicht eine sichere interne Verbindung. Dies erfüllt **Anforderung A6 (Gütestufe 3)**: Datenbank auf separatem Server installiert, Root mit sicherem Passwort, Verbindung über interne IP.
 
 > ![Testfall 3 – DB-Verbindung erfolgreich](Grafiken-Screenshots/screenshot-test3.png)
-
 ---
 
-## 7. Reflexion
+## 7 Cleanup-Skript `cleanup-nextcloud-aws.sh`
+ 
+Damit nach Tests keine unnötigen Kosten in AWS entstehen, wurde ein separates Cleanup-Skript umgesetzt. Dieses Skript löscht alle Ressourcen, die durch `deploy-nextcloud-aws.sh` erstellt wurden:
+ 
+- EC2-Instanz `m346-nextcloud-web` (Webserver)
+- EC2-Instanz `m346-nextcloud-db` (Datenbankserver)
+- die zugehörigen Security Groups `m346-nextcloud-web-sg` und `m346-nextcloud-db-sg`
+- das automatisch erzeugte Keypair (`m346-nextcloud-key-<timestamp>`), inklusive lokaler `.pem`-Datei
+ 
+#### Funktionsweise
+ 
+1. **Instanzen finden und terminieren**  
+   Über `aws ec2 describe-instances` werden alle EC2-Instanzen mit dem Tag `Name=m346-nextcloud-web` bzw. `Name=m346-nextcloud-db` gesucht, sofern sie sich noch im Zustand `pending`, `running`, `stopping` oder `stopped` befinden.  
+   Gefundene Instanzen werden mit `aws ec2 terminate-instances` beendet und mit `aws ec2 wait instance-terminated` wird gewartet, bis sie wirklich gelöscht sind.
+ 
+2. **Security Groups löschen**  
+   Anschliessend sucht das Skript über `aws ec2 describe-security-groups` nach den Gruppen `m346-nextcloud-web-sg` und `m346-nextcloud-db-sg`.  
+   Wenn zu diesen Namen noch Gruppen existieren, werden sie mit `aws ec2 delete-security-group --group-id <ID>` entfernt. Dabei stellt AWS sicher, dass nur Security Groups gelöscht werden können, die von keinen Instanzen mehr verwendet werden.
+ 
+3. **Keypair entfernen**  
+   Zum Schluss wird mit `aws ec2 describe-key-pairs` das zuletzt erzeugte Keypair gesucht, dessen Name mit `m346-nextcloud-key-` beginnt. Dieses Keypair wird mit `aws ec2 delete-key-pair` in AWS gelöscht; falls lokal noch eine Datei `<KeyName>.pem` existiert, wird sie ebenfalls entfernt.
+ 
+#### Verwendung
 
-### 7.1 Teamreflexion
+- `cd scripts`
+- `chmod +x cleanup-nextcloud-aws.sh`
+- `./cleanup-nextcloud-aws.sh`
+
+Das Skript arbeitet vollautomatisch, es sind keine weiteren Parameter nötig. Während der Ausführung können bei längeren oder seitenweisen Ausgaben der AWS CLI (z.B. bei vielen Ressourcen) mit der Taste `q` Pager-Ausgaben beendet und zur Shell zurückgekehrt werden. Die Löschvorgänge selbst laufen dabei weiter.
+ 
+**Wichtiger Hinweis:** Das Cleanup-Skript löscht die betroffenen EC2-Instanzen endgültig. Daten in Nextcloud oder in der MariaDB-Datenbank gehen dabei verloren, sofern sie nicht vorher separat gesichert wurden.
+---
+
+## 8. Reflexion
+
+### 8.1 Teamreflexion
 
 Das Projekt war für uns beide eine wertvolle Erfahrung. Samuel hat sich intensiv mit AWS und Bash-Scripting auseinandergesetzt, während Emin sich auf Dokumentation, Tests und die Struktur konzentriert hat. Diese Aufgabenteilung hat sich bewährt, und beide haben durch regelmässige Git-Commits ihre Arbeit sichtbar gemacht.
 
@@ -668,7 +700,7 @@ Ein wichtiger Punkt war das Testing: Wir haben nicht einfach das Skript geschrie
 
 ---
 
-### 7.2 Persönliche Reflexion – Samuel
+### 8.2 Persönliche Reflexion – Samuel
 
 Für mich war dieses Projekt die erste echte Erfahrung mit Infrastructure as Code. Besonders spannend fand ich, wie ein einziges Bash-Skript es ermöglicht, eine komplette Cloud-Infrastruktur mit Webserver, Datenbank und allen Konfigurationen hochzufahren. Das ist beeindruckend und zeigt, wohin moderne DevOps-Praktiken führen.
 
@@ -694,7 +726,7 @@ Insgesamt bin ich stolz auf das Ergebnis und freue mich, dass wir ein Projekt ge
 
 ---
 
-### 7.3 Persönliche Reflexion – Emin
+### 8.3 Persönliche Reflexion – Emin
  
 Dieses Projekt hat mir sehr geholfen, die Bedeutung guter Dokumentation zu verstehen. Anfangs dachte ich, Dokumentation sei nur etwas für „später", aber durch die Kriterien des Auftrags wurde mir klar: Eine gute Dokumentation ist ebenso wichtig wie das funktionierende Skript. Sie ermöglicht es einer aussenstehenden Fachperson (wie der Lehrperson), die Lösung zu verstehen und zu bewerten.
  
@@ -719,7 +751,7 @@ Dieses Projekt hat mir sehr geholfen, die Bedeutung guter Dokumentation zu verst
 Ich bin froh, dass wir beide die Zeit investiert haben, um alles gründlich zu dokumentieren. Das macht das Projekt zu etwas, das nicht nur funktioniert, sondern auch verstanden werden kann.
 ---
 
-## 8. Quellen und Referenzen
+## Quellen und Referenzen
 
 1. **Projectauftrag M346 – Cloudlösungen konzipieren und realisieren**, Gewerbliches Berufs- und Weiterbildungszentrum St.Gallen, 2025
 

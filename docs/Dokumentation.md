@@ -123,13 +123,7 @@ m346-nextcloud/
 ├── docs/
 │   ├── Dokumentation.md               # Diese Datei (in Markdown für Git)
 │   └── Grafiken-Screenshots
-│       ├── architektur.png
-│       ├── screenshot-aws-config.png
-│       ├── screenshot-nextcloud-installer.png
-│       ├── screenshot-db-server.png
-│       ├── screenshot-web-info.png
-│       ├── screenshot-deploy-output.png
-│       └── screenshot-mariadb.png
+│       ├── (Hier sind alle Screenshots)
 └── scripts/
     └── deploy-nextcloud-aws.sh        # Das Hauptdeployment-Skript
 ```

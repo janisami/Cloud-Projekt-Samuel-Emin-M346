@@ -6,6 +6,15 @@
 # - Nutzt latest Nextcloud-Archiv
 # - Zwei EC2-Instanzen: Web (Nextcloud) + DB (MariaDB)
 
+# Usage:
+#   1) AWS CLI mit gültigen Credentials konfigurieren (aws configure).
+#   2) Skript ausführbar machen: chmod +x deploy-nextcloud-aws.sh
+#   3) Skript starten:          ./deploy-nextcloud-aws.sh
+# Hinweis:
+#   Wenn beim Anlegen der Security Groups eine interaktive Nachfrage
+#   oder ein Hänger im Terminal erscheint, kann mit der Taste "q"
+#   abgebrochen werden.
+
 set -e
 
 ########################

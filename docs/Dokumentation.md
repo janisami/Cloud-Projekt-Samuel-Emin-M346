@@ -535,10 +535,8 @@ Trage im Nextcloud-Installer ein:
   Pass    : NcDbPass123!
   Host    : "Deine Öffentliche IP"
 ```
-
-> **Screenshot-Platzhalter:**  
-> ![Komplette Skript-Ausgabe](Grafiken/screenshot-deploy-output.png)  
-> *Hier Screenshot vom kompletten Terminal-Output nach erfolgreichem Skript-Lauf einfügen.*
+ 
+> ![Komplette Skript-Ausgabe](Grafiken-Screenshots/screenshot-deploy-output.png)  
 
 ---
 
@@ -548,25 +546,20 @@ Trage im Nextcloud-Installer ein:
 
 Nach dem Deployment kann die ausgegebene Public-IP im Browser geöffnet werden. Es erscheint sofort der Nextcloud-Installationsassistent – genau wie vom Auftrag gefordert.
 
-> **Screenshot-Platzhalter:**  
-> ![Nextcloud Installationsassistent](Grafiken/screenshot-nextcloud-installer.png)  
-> *Hier Screenshot vom Browser mit dem Nextcloud-Setup-Wizard einfügen.*
+> ![Nextcloud Installationsassistent](Grafiken-Screenshots/screenshot-nextcloud-installer.png)  
 
 ### 5.2 Nextcloud-Verzeichnis auf dem Webserver
 
 Auf der Web-Instanz ist das Nextcloud-Verzeichnis unter `/var/www/nextcloud` mit korrekten Berechtigungen für den Apache-User vorhanden.
-
-> **Screenshot-Platzhalter:**  
-> ![Nextcloud-Verzeichnis](Grafiken/screenshot-nextcloud-folder.png)  
-> *Hier Screenshot von `ls -la /var/www/` und `ls -la /var/www/nextcloud/` einfügen.*
+ 
+> ![Nextcloud-Verzeichnis](Grafiken-Screenshots/screenshotfolder.png)
+> ![Nextcloud-Verzeichnis](Grafiken-Screenshots/screenshot-nextcloud-folder.png)
 
 ### 5.3 MariaDB-Datenbank und Benutzer
 
 Auf der DB-Instanz wurde die Datenbank `nextcloud` angelegt und der Benutzer `ncuser` korrekt konfiguriert.
-
-> **Screenshot-Platzhalter:**  
-> ![MariaDB Datenbank und Benutzer](Grafiken/screenshot-mariadb.png)  
-> *Hier Screenshot von MariaDB-Konsole mit `SHOW DATABASES;` und `SELECT User, Host FROM mysql.user;` einfügen.*
+  
+> ![MariaDB Datenbank und Benutzer](Grafiken-Screenshots/screenshot-mariadb.png)  
 
 ---
 
@@ -601,9 +594,8 @@ chmod +x deploy-nextcloud-aws.sh
 **Fazit:**
 
 Die Automatisierung funktioniert stabil. Das `set -e` im Skript sorgt dafür, dass es bei Fehlern sofort abbricht – es entstehen keine halb-konfigurierten Ressourcen. Der Automatisierungsgrad erfüllt **Anforderung A7 (Gütestufe 3)**: Webserver komplett installiert, Datenbank vorhanden, Verbindung funktionstüchtig, IP-Adresse wird angezeigt.
-
-> **Screenshot-Platzhalter:**  
-> ![Testfall 1 – Kompletter Skript-Output](Grafiken/screenshot-test1.png)
+  
+> ![Testfall 1 – Kompletter Skript-Output](Grafiken-Screenshots/screenshot-test1.png)
 
 ---
 
@@ -631,16 +623,15 @@ Die Automatisierung funktioniert stabil. Das `set -e` im Skript sorgt dafür, da
 **Fazit:**
 
 Der Webserver ist korrekt konfiguriert. Der DocumentRoot zeigt direkt auf das Nextcloud-Verzeichnis, Port 80 ist von aussen erreichbar. Das erfüllt **Anforderung A5 (Gütestufe 3)**: Webserver installiert, Dienste konfiguriert, Startpunkt der Applikation ist über die öffentliche IP direkt erreichbar.
-
-> **Screenshot-Platzhalter:**  
-> ![Testfall 2 – Nextcloud Installationsassistent](Grafiken/screenshot-test2.png)
+  
+> ![Testfall 2 – Nextcloud Installationsassistent](Grafiken-Screenshots/screenshot-nextcloud-installer.png)
 
 ---
 
 ### 6.3 Testfall 3: Datenbankverbindung im Installer funktioniert
 
 **Testperson:** Samuel  
-**Datum:** [Platzhalter: z.B. 10.12.2025, 15:00 Uhr]  
+**Datum:** 11.12.2025  
 **Ausgangssituation:** Nextcloud-Installationsassistent ist erreichbar.
 
 **Vorgehen:**
@@ -668,8 +659,7 @@ Der Webserver ist korrekt konfiguriert. Der DocumentRoot zeigt direkt auf das Ne
 
 Die interne Kommunikation zwischen Web- und DB-Instanz funktioniert tadellos. Die Security Groups sind korrekt konfiguriert (Port 3306 nur vom Webserver-SG erreichbar), und die private IP-Adressierung ermöglicht eine sichere interne Verbindung. Dies erfüllt **Anforderung A6 (Gütestufe 3)**: Datenbank auf separatem Server installiert, Root mit sicherem Passwort, Verbindung über interne IP.
 
-> **Screenshot-Platzhalter:**  
-> ![Testfall 3 – DB-Verbindung erfolgreich](Grafiken/screenshot-test3.png)
+> ![Testfall 3 – DB-Verbindung erfolgreich](Grafiken-Screenshots/screenshot-test3.png)
 
 ---
 

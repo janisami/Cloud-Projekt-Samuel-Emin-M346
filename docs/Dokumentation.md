@@ -552,7 +552,7 @@ Nach dem Deployment kann die ausgegebene Public-IP im Browser geöffnet werden. 
 
 Auf der Web-Instanz ist das Nextcloud-Verzeichnis unter `/var/www/nextcloud` mit korrekten Berechtigungen für den Apache-User vorhanden.
  
-> ![Nextcloud-Verzeichnis](Grafiken-Screenshots/screenshotfolder.png)
+> ![Nextcloud-Verzeichnis](Grafiken-Screenshots/screenshotfolder.jpg)
 > ![Nextcloud-Verzeichnis](Grafiken-Screenshots/screenshot-nextcloud-folder.png)
 
 ### 5.3 MariaDB-Datenbank und Benutzer

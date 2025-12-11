@@ -747,9 +747,9 @@ Dieses Projekt hat mir sehr geholfen, die Bedeutung guter Dokumentation zu verst
 - Dokumentation sollte parallel zur Entwicklung stattfinden, nicht danach – so wird sie genauer und vollständiger
 - Konkrete Code-Beispiele und Screenshots sind essentiell
 - Gute Struktur (Kapitel, Unterkapitel, klare Überschriften) macht Doku lesbar
-- 
+  
 Ich bin froh, dass wir beide die Zeit investiert haben, um alles gründlich zu dokumentieren. Das macht das Projekt zu etwas, das nicht nur funktioniert, sondern auch verstanden werden kann.
- 
+
 ---
 
 ## Quellen und Referenzen

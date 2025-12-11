@@ -16,6 +16,17 @@ Samuel und Emin haben sich zusammengetan, um diese Herausforderung zu meistern. 
 
 Die gesamte Lösung ist im Git-Repository versioniert und dokumentiert, wie vom Auftrag gefordert.
 
+### 1.1 Vergleich: Manuelle Installation vs. Skript-Deployment
+ 
+| Aspekt                         | Manuelle Installation                                      | Skript-Deployment (IaC)                                      |
+|--------------------------------|------------------------------------------------------------|--------------------------------------------------------------|
+| Aufwand pro Deployment         | Viele Einzelschritte, hohe Klick- und Tipp-Arbeit         | Ein Kommando startet komplettes Setup                       |
+| Fehleranfälligkeit             | Hohe Gefahr für Tippfehler und vergessene Schritte        | Wiederholbar, gleiche Schritte bei jedem Lauf               |
+| Dauer bis zum laufenden System | Deutlich länger, abhängig von Erfahrung der Person        | Minuten, unabhängig von der ausführenden Person             |
+| Dokumentation der Schritte     | Muss separat geschrieben werden                           | Skript ist „ausführbare Dokumentation“ der Infrastruktur    |
+| Skalierung / Wiederverwendung  | Kaum wiederverwendbar, alles muss neu gemacht werden      | Skript kann mehrfach und in anderen Umgebungen genutzt werden |
+| Nachvollziehbarkeit            | Schwer nachzuvollziehen, was genau gemacht wurde         | Jeder Befehl ist im Skript sichtbar und versioniert (Git)   |
+
 ---
 
 ## 2. Architektur

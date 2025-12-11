@@ -92,11 +92,31 @@ Analog kann mit der Private IP der DB-Instanz auf den Datenbankserver zugegriffe
 
 ## Aufräumen der Ressourcen
 
-Die automatische Bereinigung ist im Skript nicht implementiert. Um unerwartete Kosten zu vermeiden, sollten nach Abschluss der Tests folgende Ressourcen in der AWS-Konsole manuell gelöscht werden:
-
-- Beide EC2-Instanzen (`m346-nextcloud-web`, `m346-nextcloud-db`)
-- Das automatisch erstellte Keypair
-- Die beiden Security Groups (`m346-nextcloud-web-sg`, `m346-nextcloud-db-sg`), falls nicht mehr benötigt
+Nach Abschluss der Tests sollen alle AWS-Ressourcen wieder gelöscht werden, um unnötige Kosten zu vermeiden.
+ 
+### Variante 1: Automatisch mit Skript
+ 
+Mit dem Skript `scripts/cleanup-nextcloud-aws.sh` werden automatisch:
+ 
+- beide EC2-Instanzen (`m346-nextcloud-web`, `m346-nextcloud-db`) terminiert
+- das zum Deployment gehörende Keypair gelöscht
+- die beiden Security Groups (`m346-nextcloud-web-sg`, `m346-nextcloud-db-sg`) entfernt, sofern sie nicht mehr verwendet werden.
+ 
+Ausführung:
+ 
+- `cd scripts`
+- `chmod +x cleanup-nextcloud-aws.sh`
+- `./cleanup-nextcloud-aws.sh`
+ 
+Falls während des Löschens (z.B. bei Security Groups) eine längere, seitenweise Ausgabe erscheint, kann mit der Taste `q` zur Shell zurückgekehrt werden.
+ 
+### Variante 2: Manuell in der AWS-Konsole
+ 
+Alternativ können die gleichen Ressourcen in der AWS Management Console manuell gelöscht werden:
+ 
+- EC2-Instanzen terminieren
+- Keypair löschen
+- Security Groups löschen, sobald sie von keiner Instanz mehr verwendet werden.
 
 ---
 

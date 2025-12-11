@@ -51,6 +51,7 @@ Das Skript erledigt nun automatisch:
 - Erstellen zweier Security Groups (Web + DB)
 - Starten einer DB-Instanz (MariaDB, DB `nextcloud`, User `ncuser`)
 - Starten einer Web-Instanz (Apache, PHP, Nextcloud aus Archiv)
+- **Falls es irgendwo hängen bleibt dann muss man "Q" drücken**
 
 Am Ende zeigt das Skript im Terminal:
 

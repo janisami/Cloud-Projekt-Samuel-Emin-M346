@@ -657,7 +657,7 @@ Die interne Kommunikation zwischen Web- und DB-Instanz funktioniert tadellos. Di
 
 ## 7 Cleanup-Skript `cleanup-nextcloud-aws.sh`
  
-Damit nach Tests keine unnötigen Kosten in AWS entstehen, wurde ein separates Cleanup-Skript umgesetzt. Dieses Skript löscht alle Ressourcen, die durch `deploy-nextcloud-aws.sh` erstellt wurden:
+Damit nach Tests keine unnötigen Kosten in AWS entstehen, wurde ein separates Cleanup-Skript umgesetzt. Das Skript befindet sich im gleichen Ordner wie das Deployskript. Dieses Skript löscht alle Ressourcen, die durch `deploy-nextcloud-aws.sh` erstellt wurden:
  
 - EC2-Instanz `m346-nextcloud-web` (Webserver)
 - EC2-Instanz `m346-nextcloud-db` (Datenbankserver)

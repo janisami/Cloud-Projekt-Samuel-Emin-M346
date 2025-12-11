@@ -652,6 +652,7 @@ Der Webserver ist korrekt konfiguriert. Der DocumentRoot zeigt direkt auf das Ne
 - Datenbankverbindung wurde sofort hergestellt
 - Keine Timeout-Fehler oder Authentifizierungsfehler
 - Der Wizard konnte zur nächsten Phase fortschreiten
+- Man kann jetzt Nextcloud voll benutzen
 
 **Fazit:**
 

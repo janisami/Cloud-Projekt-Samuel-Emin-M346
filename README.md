@@ -67,14 +67,16 @@ Am Ende zeigt das Skript im Terminal:
 
 2. Es erscheint der Installationsassistent von Nextcloud.
 
-3. Im Schritt „Datenbank einrichten" folgende Werte eintragen:
+ - **Falls die Ubuntu website Kommt einfach wegklicken und seite neu Laden**
+
+4. Im Schritt „Datenbank einrichten" folgende Werte eintragen:
 
    - Datenbankname: wie im Skript ausgegeben (Standard: `nextcloud`)
    - Benutzername: wie im Skript ausgegeben (Standard: `ncuser`)
    - Passwort: wie im Skript ausgegeben (Standard: `NcDbPass123!`)
    - Datenbank-Host: Private IP der DB-Instanz (wie im Skript ausgegeben)
 
-4. Admin-Konto für Nextcloud vergeben und Installation starten.
+5. Admin-Konto für Nextcloud vergeben und Installation starten.
 
 Nach Abschluss ist Nextcloud über die gleiche URL erreichbar.
 

@@ -120,12 +120,15 @@ Das Git-Repository wurde wie folgt strukturiert:
 ```
 m346-nextcloud/
 ├── README.md                          # Nur Inbetriebnahme
+├── Planung.md
 ├── docs/
 │   ├── Dokumentation.md               # Diese Datei (in Markdown für Git)
 │   └── Grafiken-Screenshots
 │       ├── (Hier sind alle Screenshots)
 └── scripts/
     └── deploy-nextcloud-aws.sh        # Das Hauptdeployment-Skript
+    └── cleanup-nextcloud-aws.sh
+
 ```
 
 ---

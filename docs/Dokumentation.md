@@ -12,7 +12,7 @@
 
 Dieses Projekt wurde im Rahmen des Moduls 346 an der Gewerblichen Berufsschule St.Gallen durchgeführt. Die Aufgabe war, Nextcloud (Community Edition) in einer Cloud-Umgebung bereitzustellen, ohne Docker oder den Web Installer zu verwenden. Stattdessen sollte die Installation per Bash-Skript vollautomatisiert erfolgen – ein klassisches Infrastructure as Code (IaC) Projekt.
 
-Samuel und Emin haben sich zusammengetan, um diese Herausforderung zu meistern. Das Ergebnis ist ein robustes Deployment-Skript für AWS (Amazon Web Services), das eine 2-Server-Architektur (Webserver + Datenbankserver) automatisch aufbaut und konfiguriert.
+Wir (Samuel und Emin) haben uns zusammengetan, um diese Herausforderung zu meistern. Das Ergebnis ist ein robustes Deployment-Skript für AWS (Amazon Web Services), das eine 2-Server-Architektur (Webserver + Datenbankserver) automatisch aufbaut und konfiguriert.
 
 Die gesamte Lösung ist im Git-Repository versioniert und dokumentiert, wie vom Auftrag gefordert.
 

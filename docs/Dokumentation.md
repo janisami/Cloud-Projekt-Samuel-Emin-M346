@@ -741,7 +741,7 @@ Dieses Projekt hat mir sehr geholfen, die Bedeutung guter Dokumentation zu verst
  
 **Herausforderungen:**
  
-- Zu Beginn war unklar, wie ausführlich die Dokumentation sein sollte. Es hat Zeit gekostet, einen guten „Schreibton" zu finden – weder zu simpel noch zu akademisch
+- Zu Beginn war unklar, wie ausführlich die Dokumentation sein sollte. Es hat Zeit gekostet, einen guten „Schreibton" zu finden weder zu simpel noch zu akademisch
 - Screenshots zum richtigen Zeitpunkt zu machen war manchmal knifflig (manche Fehler traten nur einmal auf)
 - Git und Markdown sind mächtige Tools, aber auch die Struktur des Repos musste passen
  

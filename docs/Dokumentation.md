@@ -59,6 +59,25 @@ Das Diagramm zeigt eine AWS-Cloud mit einer Default-VPC und einem Subnet. Darin 
 
 Ein Pfeil zeigt die Verbindung vom Webserver (über private IP) zur Datenbank (Port 3306).
 
+### 2.3 Repository-Struktur
+
+Das Git-Repository wurde wie folgt strukturiert:
+
+```
+m346-nextcloud/
+├── README.md                          # Nur Inbetriebnahme
+├── Planung.md
+├── docs/
+│   ├── Dokumentation.md               # Diese Datei (in Markdown für Git)
+│   └── Grafiken-Screenshots
+│       ├── (Hier sind alle Screenshots)
+└── scripts/
+    └── deploy-nextcloud-aws.sh        # Das Hauptdeployment-Skript
+    └── cleanup-nextcloud-aws.sh
+
+```
+
+
 ---
 
 ## 3. Vorbereitung und Umgebung
@@ -111,25 +130,6 @@ aws sts get-caller-identity
 ```
 
 Diese Ausgabe zeigte, dass die Konfiguration erfolgreich war.
-
-
-### 3.3 Repository-Struktur
-
-Das Git-Repository wurde wie folgt strukturiert:
-
-```
-m346-nextcloud/
-├── README.md                          # Nur Inbetriebnahme
-├── Planung.md
-├── docs/
-│   ├── Dokumentation.md               # Diese Datei (in Markdown für Git)
-│   └── Grafiken-Screenshots
-│       ├── (Hier sind alle Screenshots)
-└── scripts/
-    └── deploy-nextcloud-aws.sh        # Das Hauptdeployment-Skript
-    └── cleanup-nextcloud-aws.sh
-
-```
 
 ---
 

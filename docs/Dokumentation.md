@@ -721,7 +721,7 @@ Für mich war dieses Projekt die erste echte Erfahrung mit Infrastructure as Cod
 
 **Was ich für die Zukunft gelernt habe:**
 
-- Für komplexere Deployments würde ich die UserData in separate YAML-Dateien (Cloud-Init) auslagern – das ist lesbarer und wartbarer
+- Für komplexere Deployments würde ich die UserData in separate YAML-Dateien (Cloud-Init) auslagern das ist lesbarer und wartbarer
 - Ich würde mehr Logging in die Skripte einbauen, damit man Fehler leichter nachvollziehen kann
 - Terraform oder CloudFormation könnten eine noch strukturiertere Alternative sein, wenn die Infrastruktur komplexer wird
 
